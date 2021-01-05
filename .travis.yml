@@ -5,3 +5,12 @@ services:
 script:
     - docker build -t manydesigns/node2 .
     - docker images m manydesigns/node2
+
+before_deploy:
+    - docker login -u <username> -p <userpassword>
+
+deploy:
+    provider: script
+    script: docker push <dockeruser/nameofproject>
+    on:
+      branch: master
